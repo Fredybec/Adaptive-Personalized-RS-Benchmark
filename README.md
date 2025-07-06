@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project provides an implementation and evaluation of several representative recommender systems across different categories, including:
+This repository provides an implementation and evaluation of several representative recommender systems across different categories, including:
 
 | Category                 | Representative System | 
 | ------------------------ | --------------------- | 
@@ -16,7 +16,7 @@ This project provides an implementation and evaluation of several representative
 
 * The code for **CoDBand**, **DVAR**, and **IEGN** was originally posted online by their respective authors.
 * I have performed modifications including optimization, bug fixes, and adaptation of these codes to work with **Movielens** and **Amazon** datasets when the original implementations did not support them.
-* The methodologies for **ARSLA** and **AFNPR** were implemented from scratch by me. I closely followed their respective papers’ methodologies, including training and testing protocols, to ensure a fair and consistent evaluation.
+* The methodologies for **ARSLA** and **AFNPR** were implemented from scratch by me. I closely followed their respective papers’ methodologies, including training and evaluation, to ensure a fair and consistent evaluation.
 
 ## Repository Structure
 
@@ -32,12 +32,12 @@ By default, running the Docker container will use a predefined dataset (usually 
 
 ```bash
 # Build the Docker image (replace <system_name> with the folder name, e.g., DVAR)
-docker build -t <system_name>-recommender .
+docker build -t <system_name> .
 
 # Run the Docker container
-docker run --rm -it <system_name>-recommender
+docker run --rm -it <system_name>
 ```
-
+> **Note:** Refer to the Readme file inside each folder for the exact commands
 The container runs the training and evaluation automatically with the default dataset setup. To use a different dataset or customize options, please refer to the system-specific README inside the folder.
 
 ### 2. Manually without Docker
@@ -47,7 +47,7 @@ The container runs the training and evaluation automatically with the default da
   ```bash
   pip install -r requirements.txt
   ```
-* Follow the README inside the specific system folder for detailed instructions on training and testing.
+* Follow the README inside the specific system folder for detailed instructions on dataset loading and training.
 
 ## Acknowledgements
 
