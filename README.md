@@ -20,7 +20,7 @@ This repository provides an implementation and evaluation of several representat
 
 ## Repository Structure
 
-Each recommender system is contained in its own folder named after the system (e.g., `DVAR`, `CoDBand`, `IEGN`, `AFNPR`, `ARSLA`). Inside each folder, you will find all the required source files, dataset processing scripts, and a **Dockerfile** to facilitate faster and reproducible training.
+Each recommender system is contained in its own folder named after the system (e.g., `DVAR`, `CoDBand`, `IEGN`, `AFNPR`, `ARSLA`). Inside each folder, you will find all the required source files, dataset processing scripts, and a **Dockerfile** to facilitate faster and reproducible training. Data file contain the MovieLens ML-1M dataset and the merged Amazon datasets of the following categories: Digital Music, Gift Cards, Health and Personal Care, Magazine Subscriptions, and Subscription Boxes. 
 
 ## How to Run
 
