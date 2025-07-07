@@ -49,6 +49,9 @@ The container runs the training and evaluation automatically with the default da
   ```
 * Follow the README inside the specific system folder for detailed instructions on dataset loading and training.
 
+### Note:
+A scripts folder contain a script to convert user_id and asin in Amazon dataset from String to integer.
+
 ## Acknowledgements
 
 Special thanks to the authors of **CoDBand**, **DVAR**, and **IEGN** for making their codes publicly available, which greatly facilitated this work.
