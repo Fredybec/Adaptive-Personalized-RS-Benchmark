@@ -91,3 +91,4 @@ Special thanks to the authors of **CoDBand**, **DVAR**, and **IEGN** for making 
 ## Contact
 
 If you require further information, clarifications, or assistance, please feel free to contact me.
+**Email:** [b.asri.ced@uca.ac.ma](mailto:b.asri.ced@uca.ac.ma]
