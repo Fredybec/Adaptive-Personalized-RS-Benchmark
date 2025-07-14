@@ -21,7 +21,7 @@ import argparse
 parser = argparse.ArgumentParser(description="Choose dataset to preprocess")
 parser.add_argument(
     "--dataset",
-    choices=["Amazon", "MovieLens"],
+    choices=["amazon", "movielens"],
     required=True,
     help="Specify which dataset to process: Amazon or MovieLens"
 )
@@ -218,10 +218,10 @@ def process_amazon():
         with open(name + '.pkl', 'wb') as f:
             pickle.dump(obj, f)
 
-    save_obj(inner_data_records, 'pro_data/amazon/amazon_item_sequences')
-    save_obj(user_inverse_mapping, 'pro_data/amazon/amazon_user_mapping')
-    save_obj(item_inverse_mapping, 'pro_data/amazon/amazon_item_mapping')
-    save_obj(inner_data_time_normalized, 'pro_data/amazon/amazon_time_sequences')
+    save_obj(inner_data_records, 'IEGN/pro_data/amazon/amazon_item_sequences')
+    save_obj(user_inverse_mapping, 'IEGN/pro_data/amazon/amazon_user_mapping')
+    save_obj(item_inverse_mapping, 'IEGN/pro_data/amazon/amazon_item_mapping')
+    save_obj(inner_data_time_normalized, 'IEGN/pro_data/amazon/amazon_time_sequences')
     print("amazon_user_mapping:", len(user_inverse_mapping),len(inner_data_time_normalized)) 
 
 
@@ -370,11 +370,11 @@ def process_movielens():
         with open(name + '.pkl', 'wb') as f:
             pickle.dump(obj, f)
 
-    save_obj(inner_data_records, 'pro_data/ml/ML1M_item_sequences')
-    save_obj(user_inverse_mapping, 'pro_data/ml/ML1M_user_mapping')
-    save_obj(item_inverse_mapping, 'pro_data/ml/ML1M_item_mapping')
-    save_obj(inner_data_time_normalized, 'pro_data/ml/ML1M_time_sequences')
-    save_obj(mapped_review_dict, 'pro_data/ml/ML1M_review_dict')
+    save_obj(inner_data_records, 'IEGN/pro_data/ml/ML1M_item_sequences')
+    save_obj(user_inverse_mapping, 'IEGN/pro_data/ml/ML1M_user_mapping')
+    save_obj(item_inverse_mapping, 'IEGN/pro_data/ml/ML1M_item_mapping')
+    save_obj(inner_data_time_normalized, 'IEGN/pro_data/ml/ML1M_time_sequences')
+    save_obj(mapped_review_dict, 'IEGN/pro_data/ml/ML1M_review_dict')
 
     print("Max len:", max(len(seq) for seq in inner_data_records))
     print("Min len:", min(len(seq) for seq in inner_data_records))
@@ -386,7 +386,7 @@ def process_movielens():
 
 
 if __name__ == "__main__":
-    if args.dataset == "Amazon":
+    if args.dataset == "amazon":
         process_amazon()
-    elif args.dataset == "MovieLens":
+    elif args.dataset == "movielens":
         process_movielens()

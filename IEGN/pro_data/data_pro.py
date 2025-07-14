@@ -133,38 +133,39 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     TPS_DIR = 'data_files/music'
 
-    parser.add_argument('--dataset', type=str, default='MovieLens', choices=['MovieLens', 'Amazon'],
+    parser.add_argument('--dataset', type=str, default=None, choices=['movielens', 'amazon'],
                         help='Dataset to use: MovieLens or Amazon')
     
-    parser.add_argument('--user_record_file', type=str, default='ml/ML1M_item_sequences.pkl')
-    parser.add_argument('--user_mapping_file', type=str, default='ml/ML1M_user_mapping.pkl')
-    parser.add_argument('--item_mapping_file', type=str, default='ml/ML1M_item_mapping.pkl')
-    parser.add_argument('--time_record_file', type=str, default='ml/ML1M_time_sequences.pkl')
-
+    parser.add_argument('--user_record_file', type=str, default=None)
+    parser.add_argument('--user_mapping_file', type=str, default=None)
+    parser.add_argument('--item_mapping_file', type=str, default=None)
+    parser.add_argument('--time_record_file', type=str, default=None)
+    parser.add_argument('--data_path', type=str, default=None)
+    parser.add_argument('--user_data', type=str, default='data_files/music/music.csv')
+    parser.add_argument('--adj_type', type=str, default='plain')
+    parser.add_argument('--dir_path', type=str, default='IEGN/pro_data/')
     config = parser.parse_args()
 
-    if config.dataset == 'MovieLens':
+    if config.dataset == 'movielens':
         print('MovieLens Loading')
         config.user_record_file = 'ml/ML1M_item_sequences.pkl'
         config.user_mapping_file = 'ml/ML1M_user_mapping.pkl'
         config.item_mapping_file = 'ml/ML1M_item_mapping.pkl'
         config.time_record_file = 'ml/ML1M_time_sequences.pkl'
-    elif config.dataset == 'Amazon':
+        TPS_DIR = 'IEGN/data_files/ml'
+        config.data_path = TPS_DIR
+    elif config.dataset == 'amazon':
         print('Amazon Loading')
         config.user_record_file = 'amazon/amazon_item_sequences.pkl'
         config.user_mapping_file = 'amazon/amazon_user_mapping.pkl'
         config.item_mapping_file = 'amazon/amazon_item_mapping.pkl'
         config.time_record_file = 'amazon/amazon_time_sequences.pkl'
+        TPS_DIR = 'IEGN/data_files/amazon'
+        config.data_path = TPS_DIR
     else:
         raise ValueError(f"Unsupported dataset: {config.dataset}")
 
 
-    parser.add_argument('--data_path', type=str, default='data_files/music/')
-    parser.add_argument('--user_data', type=str, default='data_files/music/music.csv')
-    parser.add_argument('--adj_type', type=str, default='plain')
-    parser.add_argument('--dir_path', type=str, default='pro_data/')
-
-    config = parser.parse_args()
 
     index_shift = 1
     num_users = 1
@@ -211,6 +212,6 @@ if __name__ == '__main__':
         para['plain_adj'] = plain_adj
         print('use the plain adjacency matrix')
 
-    output = open(os.path.join(TPS_DIR, 'music_test.para'), 'wb')
+    output = open(os.path.join(TPS_DIR, f'{config.dataset}_test.para'), 'wb')
 
     pickle.dump(para, output)

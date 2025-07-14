@@ -35,7 +35,7 @@ class experimentOneRealData(object):
         global relevant_items_per_user
 
         self.namelabel = namelabel
-        assert dataset in ["LastFM", "Delicious", "MovieLens", "Amazon"]
+        assert dataset in ["LastFM", "Delicious", "movielens", "amazon"]
         self.dataset = dataset
         self.context_dimension = context_dimension
         self.Plot = plot
@@ -53,7 +53,7 @@ class experimentOneRealData(object):
             self.save_address = Delicious_save_address
             FeatureVectorsFileName = Delicious_FeatureVectorsFileName
             self.event_fileName = self.address + "/simulatedNonstationaryClusterUsers_N20Gamma59_ObsMoreThan50.dat"
-        elif self.dataset == 'MovieLens':
+        elif self.dataset == 'movielens':
             self.relationFileName = MovieLens_relationFileName
             self.address = MovieLens_address
             self.save_address = MovieLens_save_address
@@ -75,7 +75,7 @@ class experimentOneRealData(object):
                             relevant_items_per_user[uid] = set()
                         relevant_items_per_user[uid].add(iid)
             print('---Algorithm started-----')
-        elif self.dataset == 'Amazon':
+        elif self.dataset == 'amazon':
             self.relationFileName = Amazon_relationFileName
             self.address = Amazon_address
             self.save_address = Amazon_save_address
@@ -310,7 +310,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description = '')
     parser.add_argument('--alg', dest='alg', help='Select a specific algorithm, could be CoLin, hLinUCB, factorUCB, LinUCB, etc.')
     parser.add_argument('--namelabel', dest='namelabel', help='Name')
-    parser.add_argument('--dataset', default='MovieLens', dest='dataset', help='dataset')
+    parser.add_argument('--dataset', default='movielens', dest='dataset', help='dataset')
 
     parser.add_argument('--dCLUB_alpha', dest='dCLUB_alpha', help='dCLUB_alpha')
     parser.add_argument('--dLinUCB_alpha', dest='dLinUCB_alpha', help='dLinUCB_alpha')
@@ -446,11 +446,11 @@ if __name__ == '__main__':
     startTime = datetime.datetime.now()
     if dataset == "LastFM":
         address = LastFM_save_address
-    elif dataset == "MovieLens":
+    elif dataset == "movielens":
         address = MovieLens_save_address
     elif dataset == "Delicious":
         address = Delicious_save_address
-    elif dataset == "Amazon":
+    elif dataset == "amazon":
         address = Amazon_save_address
     print(address)
 

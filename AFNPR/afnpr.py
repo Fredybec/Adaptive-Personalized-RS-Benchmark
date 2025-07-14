@@ -166,13 +166,13 @@ def train_test_split(sequences, test_ratio=0.2):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dataset', choices=['MovieLens', 'Amazon'], required=True, help='Dataset to use: ml or amazon')
+    parser.add_argument('--dataset', choices=['movielens', 'amazon'], required=True, help='Dataset to use: ml or amazon')
     args = parser.parse_args()
 
-    if args.dataset == 'MovieLens':
+    if args.dataset == 'movielens':
         print("Loading MovieLens 1M data...")
         sequences = load_ml1m_data('data/ml-1m/ratings.dat')
-    elif args.dataset == 'Amazon':
+    elif args.dataset == 'amazon':
         print("Loading Amazon data...")
         sequences = load_amazon_data('data/amazon/amazon.jsonl')
 

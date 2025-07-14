@@ -215,6 +215,10 @@ def train_model(train_data, test_data, config):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
+        # dataset argument
+    parser.add_argument('--dataset', type=str, default='movielens', choices=['movielens', 'amazon'],
+                        help='Dataset to use: movielens or amazon')
+
     # data arguments
     parser.add_argument('--L', type=int, default=5)
     parser.add_argument('--T', type=int, default=3)
@@ -235,7 +239,7 @@ if __name__ == '__main__':
     parser.add_argument('--drop', type=float, default=0.5)
 
     #add parameters
-    parser.add_argument('--para_data', type=str, default='data/music/music_test.para')
+    parser.add_argument('--para_data', type=str, default=None)
 
     parser.add_argument('--layer_size', nargs='?', default='[50,50,50]', help='Output sizes of every layer')
     parser.add_argument('--node_dropout', nargs='?', default='[0.1,0.1,0.1]',
@@ -250,6 +254,18 @@ if __name__ == '__main__':
     parser.add_argument('--ac_fc', type=str, default='relu')
 
     config = parser.parse_args()
+
+    
+    # Dynamically assign para_data path based on dataset if not explicitly given
+    if not config.para_data:
+        if config.dataset == 'movielens':
+            config.para_data = 'IEGN/data_files/ml/movielens_test.para'
+        elif config.dataset == 'amazon':
+            config.para_data = 'IEGN/data_files/amazon/amazon_test.para'
+        else:
+            raise ValueError(f"Unsupported dataset: {config.dataset}")
+
+    print(f'Using parameter data from: {config.para_data}')
 
     pkl_file = open(config.para_data, 'rb')
 
@@ -266,6 +282,6 @@ if __name__ == '__main__':
     train.to_sequence(config.L, config.T)
 
     logger.info(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-    logger.info(config)
+    #logger.info(config)
     train_model(train, config.user_test, config)
     #train_model(train, test_set, config)

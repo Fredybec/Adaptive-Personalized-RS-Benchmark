@@ -8,12 +8,12 @@ save_address = "./SimulationResults"
 LastFM_save_address = "./LastFMResults"
 Delicious_save_address = "./DeliciousResults"
 Yahoo_save_address = "./YahooResults"
-MovieLens_save_address = './MovieLensResults'
-Amazon_save_address = './AmazonResults'
+MovieLens_save_address = 'CoDBand/MovieLensResults'
+Amazon_save_address = 'CoDBand/AmazonResults'
 
 save_addressResult = "./Results/Sparse"
 
-datasets_address = './Dataset' 
+datasets_address = 'CoDBand/Dataset' 
 
 LastFM_address = datasets_address + '/Dataset/hetrec2011-lastfm-2k/processed_data'
 Delicious_address = datasets_address + '/Dataset/hetrec2011-delicious-2k/processed_data'

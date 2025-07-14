@@ -11,10 +11,9 @@ def intersect2d(a, b):
 
 
 def load_data(dataset,data_path_str=None):
-    if dataset == "MovieLens":
+    if dataset == "movielens":
         print("___Reading rating data___")
-        data_path = Path("data_files/ml")
-        os.mkdir(data_path)
+        data_path = Path("DVAR/data_files/ml")
         n_user = 6040
         n_item = 3706
         n_cate = 18
@@ -199,12 +198,11 @@ def load_data(dataset,data_path_str=None):
             f1.close()
         print("___Data MovieLens loading is finished___")
 
-    elif dataset == "Amazon":
+    elif dataset == "amazon":
         n_cate = 5
         print("___Reading Amazon review data___")
-        data_path = Path("data_files/amazon")
-        os.mkdir(data_path)
-        file_path = "data/amazon.jsonl"
+        data_path = Path("DVAR/data_files/amazon")
+        file_path = "data/amazon/amazon.jsonl"
 
         raw_data = []
         with open(file_path, "r", encoding="utf-8") as f:

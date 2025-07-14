@@ -16,8 +16,8 @@ RATING_MAX = 5.0
 NUM_RUNS = 1
 
 def load_and_preprocess_data(dataset):
-    if dataset == 'Amazon':
-        data = pd.read_json('amazon/amazon.jsonl', lines=True)
+    if dataset == 'amazon':
+        data = pd.read_json('data/amazon/amazon.jsonl', lines=True)
         data = data[['user_id', 'asin', 'rating', 'timestamp', 'category']]
         data = data.dropna(subset=['user_id', 'asin', 'rating', 'category'])
 
@@ -36,11 +36,11 @@ def load_and_preprocess_data(dataset):
         id_col, item_col, rating_col, time_col = 'user_id', 'asin', 'rating', 'timestamp'
         n_clusters = 2
 
-    elif dataset == 'MovieLens':
-        ratings = pd.read_csv('ml-1m/ratings.dat', sep='::', header=None,
+    elif dataset == 'movielens':
+        ratings = pd.read_csv('data/ml-1m/ratings.dat', sep='::', header=None,
                               names=['UserID', 'MovieID', 'Rating', 'Timestamp'],
                               engine='python')
-        movies = pd.read_csv('ml-1m/movies.dat', sep='::', header=None,
+        movies = pd.read_csv('data/ml-1m/movies.dat', sep='::', header=None,
                              names=['MovieID', 'Title', 'Genres'],
                              engine='python', encoding='latin-1')
 
@@ -186,7 +186,7 @@ def run_once(dataset):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dataset', type=str, choices=['Amazon', 'MovieLens'], required=True, help="Dataset to use: 'amazon' or 'ml'")
+    parser.add_argument('--dataset', type=str, choices=['amazon', 'movielens'], required=True, help="Dataset to use: 'amazon' or 'ml'")
     args = parser.parse_args()
 
     print(f"Running ARSLA on dataset: {args.dataset}")
