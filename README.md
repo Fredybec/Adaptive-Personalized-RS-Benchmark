@@ -24,9 +24,45 @@ Each recommender system is contained in its own folder named after the system (e
 
 ## How to Run
 
-You can run any system in two ways:
+You can run any system in three ways:
 
-### 1. Using Docker (Recommended)
+### 1. Using Prebuilt Docker Image from Docker Hub (Recommended)
+
+You can pull and run the prebuilt Docker image directly from Docker Hub [Link](https://hub.docker.com/r/fredybec/rs-benchmark):
+
+```bash
+docker pull fredybec/rs-benchmark
+```
+
+Run the container with GPU support:
+
+```bash
+docker run --rm -it --gpus all fredybec/rs-benchmark
+```
+
+This runs the benchmark suite using the default configuration.
+If you want to customize datasets, models, or parameters, clone the repository and build locally:
+
+```bash
+git clone https://github.com/Fredybec/Adaptive-Personalized-RS-Benchmark.git
+cd Adaptive-Personalized-RS-Benchmark
+
+# Build the Docker image
+docker build -t rs-benchmark .
+
+# Run with GPU support
+docker run --rm -it --gpus all rs-benchmark
+```
+> **Note:** -it Enables interactive mode so you can input selections (e.g., choosing models and datasets). \
+--gpus all Grants the container access to all available GPUs for faster computation. \
+If you don't have a GPU, remove the --gpus all option when running the container.
+
+After executing the docker run command, you will see an interface like the one below where you can choose which recommender systems to run and on which dataset:
+
+
+![Benchmarking CLI](images/image.png)
+
+### 2. Using Docker (Recommended)
 
 By default, running the Docker container will use a predefined dataset (usually Movielens or Amazon depending on the system). You can build and run the Docker container with the following commands from inside the system's folder:
 
@@ -40,7 +76,7 @@ docker run --rm -it <system_name>
 > **Note:** Refer to the Readme file inside each folder for the exact commands
 The container runs the training and evaluation automatically with the default dataset setup. To use a different dataset or customize options, please refer to the system-specific README inside the folder.
 
-### 2. Manually without Docker
+### 3. Manually without Docker
 
 * Install the required Python packages by running:
 
